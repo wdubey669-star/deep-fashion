@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DEEP FASHION STORE</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+:root{--ink:#111;--paper:#f6f4ef;--soft:#e8e3d9;--muted:#77736c;--white:#fff;--line:rgba(17,17,17,.12);--shadow:0 18px 55px rgba(0,0,0,.13)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:"DM Sans",Arial,sans-serif;color:var(--ink);background:var(--paper);overflow-x:hidden}button,input{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}
+.topbar{background:#111;color:#fff;text-align:center;padding:10px;font-size:10px;letter-spacing:2px;text-transform:uppercase}
+header{position:sticky;top:0;z-index:1000;background:rgba(246,244,239,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{max-width:1450px;margin:auto;min-height:78px;padding:0 30px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.logo{font:700 27px "Playfair Display",serif;letter-spacing:2px;white-space:nowrap}.logo span{display:block;text-align:center;font:700 9px "DM Sans";letter-spacing:4px}
+.nav-links{display:flex;gap:30px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.3px}.nav-links a{position:relative;padding:8px 0}.nav-links a:after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:#111;transition:.3s}.nav-links a:hover:after{width:100%}
+.nav-actions{display:flex;gap:8px}.icon-btn{width:42px;height:42px;border:1px solid var(--line);background:transparent;border-radius:50%}.cart-btn{width:auto;border-radius:999px;background:#111;color:#fff;padding:0 15px;font-weight:700}.cart-count{background:#fff;color:#111;border-radius:50%;display:inline-grid;place-items:center;width:20px;height:20px;margin-left:5px;font-size:10px}
+.hero{min-height:650px;max-width:1450px;margin:auto;padding:28px 30px 0;display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.hero-copy{background:#111;color:#fff;padding:clamp(50px,8vw,115px);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}.hero-copy:after{content:"";position:absolute;width:380px;height:380px;border:1px solid #ffffff2d;border-radius:50%;right:-170px;bottom:-170px}
+.kicker{font-size:10px;letter-spacing:4px;color:#aaa;margin-bottom:20px}.hero h1{font:600 clamp(55px,7vw,105px)/.88 "Playfair Display",serif}.hero h1 em{color:#cfc9bd;font-weight:500}.hero p{max-width:490px;margin:28px 0 34px;color:#bbb;line-height:1.8;font-size:13px}.cta{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#111;padding:16px 25px;width:max-content;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.hero-visual{background:#ddd8ce;min-height:500px;position:relative;overflow:hidden}.hero-img{width:100%;height:100%;object-fit:cover;display:block}.hero-badge{position:absolute;left:25px;bottom:25px;background:#fff;padding:15px 18px;font-size:9px;letter-spacing:2px;font-weight:700}
+.ticker{background:#d9d4ca;overflow:hidden;white-space:nowrap}.ticker-track{display:inline-block;padding:15px 0;animation:marquee 25s linear infinite;font-size:10px;letter-spacing:3px;font-weight:700}.ticker-track span{margin:0 35px}@keyframes marquee{to{transform:translateX(-50%)}}
+.section{max-width:1450px;margin:auto;padding:100px 30px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:35px}.section-head h2{font:600 clamp(38px,5vw,65px)/1 "Playfair Display",serif}.section-head p{max-width:430px;color:var(--muted);font-size:12px;line-height:1.8}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:25px}.filter{background:transparent;border:1px solid var(--line);padding:10px 16px;border-radius:999px;font-size:10px;text-transform:uppercase;letter-spacing:1px}.filter.active,.filter:hover{background:#111;color:#fff;border-color:#111}
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.product-card{background:#fff;min-width:0;transition:.35s;box-shadow:0 2px 0 #00000005}.product-card:hover{transform:translateY(-7px);box-shadow:var(--shadow)}.card-media{height:390px;background:#eee;position:relative;overflow:hidden}.card-media>img{width:100%;height:100%;display:block;object-fit:cover;transition:.6s}.product-card:hover .card-media>img{transform:scale(1.05)}.product-number{position:absolute;top:14px;left:14px;z-index:2;background:#fff;padding:7px 9px;font-size:9px;font-weight:800}.heart{position:absolute;right:13px;top:13px;z-index:3;border:0;background:#fff;width:35px;height:35px;border-radius:50%;font-size:19px}.heart.liked{background:#111;color:#fff}.quick-view{position:absolute;left:12px;right:12px;bottom:12px;background:#111e;color:#fff;text-align:center;padding:12px;font-size:9px;font-weight:700;letter-spacing:2px;transform:translateY(70px);transition:.3s}.product-card:hover .quick-view{transform:translateY(0)}
+.card-info{padding:18px;display:grid;grid-template-columns:1fr auto;gap:8px}.eyebrow{font-size:8px;letter-spacing:2px;color:#999;margin-bottom:5px}.card-info h3{font:19px "Playfair Display",serif}.card-info strong{font-size:11px;white-space:nowrap}.add-cart{grid-column:1/-1;border:0;border-top:1px solid var(--line);background:none;text-align:left;padding-top:13px;font-size:9px;letter-spacing:1.5px;font-weight:800;display:flex;justify-content:space-between}.add-cart span{font-size:18px}
+.feature-strip{background:#111;color:#fff;display:grid;grid-template-columns:repeat(3,1fr)}.feature{padding:38px 30px;border-right:1px solid #ffffff1f}.feature:last-child{border:0}.feature b{display:block;font:24px "Playfair Display",serif;margin-bottom:8px}.feature p{color:#aaa;font-size:11px;line-height:1.7}
+.newsletter{background:#e3ded4;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}.newsletter h2{font:600 clamp(38px,5vw,62px) "Playfair Display",serif}.signup{display:flex;border-bottom:1px solid #111}.signup input{flex:1;border:0;background:transparent;padding:15px 0;outline:0}.signup button{border:0;background:none;font-weight:800}
+footer{background:#111;color:#fff;padding:70px 30px 30px}.footer-grid{max-width:1450px;margin:auto;display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:45px}.footer-logo{font:34px "Playfair Display",serif}footer p,footer a{color:#999;font-size:11px;line-height:2}footer h4{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:15px}.copyright{max-width:1450px;margin:55px auto 0;padding-top:20px;border-top:1px solid #292929;color:#666;font-size:9px;display:flex;justify-content:space-between}
+.modal{position:fixed;inset:0;background:#000b;z-index:2000;display:none;place-items:center;padding:20px}.modal.open{display:grid}.modal-box{width:min(1050px,100%);max-height:90vh;overflow:auto;background:#f6f4ef;display:grid;grid-template-columns:1fr 1fr;position:relative}.modal-image{min-height:600px;background:#ddd}.modal-image img{width:100%;height:100%;object-fit:cover}.modal-info{padding:55px;display:flex;flex-direction:column;justify-content:center}.modal-info h2{font:50px/1 "Playfair Display",serif}.modal-info p{color:#666;line-height:1.8;font-size:12px;margin:20px 0}.modal-price{font-size:20px;font-weight:800;margin-bottom:25px}.close{position:absolute;right:15px;top:15px;border:0;background:#111;color:#fff;border-radius:50%;width:38px;height:38px;z-index:3}
+.toast{position:fixed;right:20px;bottom:20px;background:#111;color:#fff;padding:15px 20px;z-index:3000;transform:translateY(120px);transition:.3s;font-size:11px}.toast.show{transform:translateY(0)}
+.cart-panel{position:fixed;top:0;right:-430px;width:min(430px,100%);height:100%;background:#fff;z-index:2500;box-shadow:-20px 0 60px #0002;transition:.4s;padding:30px;display:flex;flex-direction:column}.cart-panel.open{right:0}.cart-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:20px}.cart-items{flex:1;overflow:auto;padding:20px 0}.cart-item{display:grid;grid-template-columns:75px 1fr auto;gap:12px;margin-bottom:16px;align-items:center}.cart-item img{width:75px;height:90px;object-fit:cover;background:#eee}.cart-item h4{font:17px "Playfair Display",serif}.cart-item small{color:#777}.remove{border:0;background:none;color:#999}.cart-total{border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;font-weight:800}
+@media(max-width:1000px){.nav-links{display:none}.hero{grid-template-columns:1fr}.product-grid{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.nav{padding:0 15px}.logo{font-size:21px}.search-btn{display:none}.hero,.section{padding-left:15px;padding-right:15px}.hero{padding-top:15px}.hero-copy{padding:55px 30px}.hero-visual{min-height:430px}.product-grid{grid-template-columns:repeat(2,1fr);gap:10px}.card-media{height:300px}.card-info{padding:12px}.card-info h3{font-size:16px}.feature-strip,.newsletter{grid-template-columns:1fr}.feature{border-right:0;border-bottom:1px solid #ffffff1f}.footer-grid{grid-template-columns:1fr}.copyright{flex-direction:column;gap:8px}.modal-box{grid-template-columns:1fr}.modal-image{min-height:360px;max-height:45vh}.modal-info{padding:30px}.modal-info h2{font-size:38px}}
+
+/* ===== DEEP FASHION STORE PREMIUM UPGRADE ===== */
+:root{
+  --gold:#c9a56a;--dark:#0d0d0d;--cream:#f4f0e8;--panel:#fff;
+  --muted:#777;--line:rgba(0,0,0,.12);--green:#128c55;
+}
+body{background:linear-gradient(135deg,#f8f6f1,#eee9df);color:#111}
+.topbar{background:linear-gradient(90deg,#090909,#25221c,#090909);letter-spacing:2.5px}
+header{background:rgba(250,248,243,.96)}
+.logo{color:#111}
+.hero-copy{background:radial-gradient(circle at 90% 20%,#383127 0,#111 35%,#090909 100%)}
+.hero-copy:before{content:"50% OFF • AZAADI OFFER";position:absolute;right:30px;top:25px;border:1px solid #c9a56a;color:#c9a56a;padding:9px 12px;font-size:9px;letter-spacing:1.5px;font-weight:800}
+.hero h1{letter-spacing:-2px}
+.section-head h2{letter-spacing:-1px}
+.shop-toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:15px;
+  margin:20px 0 25px;padding:14px 16px;background:#fff;border:1px solid var(--line);
+  box-shadow:0 8px 30px rgba(0,0,0,.05);flex-wrap:wrap
+}
+.pretty-search{display:flex;align-items:center;gap:8px;background:#f5f3ee;border:1px solid var(--line);border-radius:999px;padding:4px 6px 4px 16px;min-width:min(420px,100%)}
+.pretty-search input{border:0;background:transparent;outline:0;flex:1;padding:10px;font-size:12px}
+.pretty-search button{border:0;background:#111;color:#fff;border-radius:50%;width:36px;height:36px}
+.sort-box{border:1px solid var(--line);background:#fff;padding:11px 14px;font-size:11px;outline:0}
+.product-card{border:1px solid transparent;border-radius:2px;overflow:hidden;position:relative}
+.product-card:hover{border-color:#c9a56a}
+.card-media{height:410px;background:linear-gradient(145deg,#eee,#ddd)}
+.product-card .card-info{background:#fff}
+.product-card:after{content:"";position:absolute;inset:auto 0 0;height:2px;background:linear-gradient(90deg,#111,#c9a56a,#111);transform:scaleX(0);transition:.35s}
+.product-card:hover:after{transform:scaleX(1)}
+.offer-chip{position:absolute;left:14px;bottom:14px;z-index:4;background:#111;color:#fff;padding:8px 10px;font-size:8px;letter-spacing:1.5px;font-weight:800}
+.color-row{display:flex;gap:7px;margin:4px 0 13px;grid-column:1/-1}
+.color-dot{width:18px;height:18px;border-radius:50%;border:2px solid #fff;outline:1px solid #bbb;cursor:pointer}
+.color-dot.black{background:#111}.color-dot.white{background:#fff}.color-dot.beige{background:#c8b79e}.color-dot.green{background:#4d6350}
+.verify-banner{max-width:1450px;margin:0 auto 80px;padding:0 30px}
+.verify-inner{background:#111;color:#fff;padding:40px;display:flex;align-items:center;justify-content:space-between;gap:30px;border:1px solid #333}
+.verify-inner h3{font:30px "Playfair Display",serif}.verify-inner p{color:#aaa;font-size:12px;line-height:1.7;margin-top:7px}
+.gold-btn{background:#c9a56a;color:#111;border:0;padding:14px 20px;font-size:10px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}
+.location-card{max-width:1450px;margin:0 auto 80px;padding:0 30px}
+.location-inner{display:grid;grid-template-columns:1fr 1fr;background:#e5e0d6}
+.location-copy{padding:55px}.location-copy h2{font:45px "Playfair Display",serif}.location-copy p{color:#666;line-height:1.8;font-size:12px;margin:16px 0}
+.map-demo{min-height:300px;background:linear-gradient(135deg,#d8d0c0,#bcb4a5);position:relative;display:grid;place-items:center;overflow:hidden}
+.map-demo:before,.map-demo:after{content:"";position:absolute;background:#fff8;width:140%;height:1px;transform:rotate(25deg)}.map-demo:after{transform:rotate(-25deg)}
+.pin{position:relative;z-index:2;width:70px;height:70px;background:#111;color:#c9a56a;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:grid;place-items:center;font-size:26px;box-shadow:0 15px 30px #0003}.pin span{transform:rotate(45deg)}
+.channels{max-width:1450px;margin:0 auto 100px;padding:0 30px}
+.channel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.channel{background:#fff;padding:28px;border:1px solid var(--line);transition:.3s}
+.channel:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.channel b{font:23px "Playfair Display",serif}.channel p{font-size:11px;color:#777;line-height:1.7;margin:8px 0 15px}.channel a{font-size:9px;letter-spacing:1.4px;font-weight:800}
+.auth-modal,.checkout-modal{position:fixed;inset:0;background:#000b;z-index:4000;display:none;place-items:center;padding:20px}.auth-modal.open,.checkout-modal.open{display:grid}
+.auth-box,.checkout-box{width:min(720px,100%);background:#f8f6f1;position:relative;box-shadow:0 25px 80px #0005}
+.auth-top{background:#111;color:#fff;padding:35px}.auth-top h2{font:40px "Playfair Display",serif}.auth-top p{color:#aaa;font-size:11px;margin-top:7px}
+.auth-body{padding:30px}.field{margin-bottom:14px}.field label{display:block;font-size:9px;letter-spacing:1.5px;font-weight:800;margin-bottom:7px}.field input,.field select{width:100%;padding:13px;border:1px solid var(--line);background:#fff;outline:0}
+.auth-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.verify-code{background:#e8e1d5;padding:12px;font-size:12px;letter-spacing:3px;font-weight:900}
+.close-x{position:absolute;right:15px;top:15px;background:#fff;border:0;border-radius:50%;width:35px;height:35px;z-index:2}
+.checkout-box{max-height:90vh;overflow:auto;padding:35px}.checkout-box h2{font:38px "Playfair Display",serif;margin-bottom:25px}.payment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.pay-option{border:1px solid var(--line);background:#fff;padding:18px;text-align:center;font-weight:800;font-size:11px}.pay-option.active{border:2px solid #111}.checkout-total{margin:25px 0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font-weight:900}
+footer{position:relative}.footer-extra{max-width:1450px;margin:0 auto 40px;padding:35px 0;border-top:1px solid #292929;display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}.footer-extra h4{color:#fff}.footer-extra p{color:#888}
+@media(max-width:900px){.channel-grid{grid-template-columns:repeat(2,1fr)}.location-inner{grid-template-columns:1fr}.footer-extra{grid-template-columns:1fr 1fr}.verify-inner{flex-direction:column;align-items:flex-start}}
+@media(max-width:600px){.shop-toolbar{align-items:stretch}.pretty-search{min-width:100%}.sort-box{width:100%}.channel-grid{grid-template-columns:1fr}.footer-extra{grid-template-columns:1fr}.verify-banner,.location-card,.channels{padding-left:15px;padding-right:15px}.verify-inner{padding:25px}.location-copy{padding:30px}.payment-grid{grid-template-columns:1fr}}
+
+
+/* ===== FINAL PROJECT POLISH ===== */
+:root{--deep:#101010;--lux:#c7a46a;--paper:#f5f2eb;--white:#fff;--soft:#e9e3d8;--muted:#777;--success:#168653}
+body{min-height:100vh}
+button,a,input,select{outline-offset:3px}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--lux)}
+.loading-bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#111,var(--lux),#111);z-index:9999;transition:width .25s}
+.scroll-top{position:fixed;right:22px;bottom:22px;width:45px;height:45px;border-radius:50%;border:0;background:#111;color:#fff;z-index:1800;opacity:0;pointer-events:none;transition:.3s;box-shadow:0 12px 30px #0003}
+.scroll-top.show{opacity:1;pointer-events:auto}
+.promo-countdown{display:flex;gap:8px;margin:18px 0 25px}
+.time-box{border:1px solid #ffffff33;padding:10px 12px;text-align:center;min-width:55px;background:#ffffff09}
+.time-box b{display:block;font-size:18px}.time-box small{font-size:7px;letter-spacing:1px;color:#aaa}
+.hero-stats{display:flex;gap:25px;margin-top:28px}.hero-stat b{display:block;font:20px "Playfair Display",serif}.hero-stat span{font-size:8px;color:#999;letter-spacing:1px}
+.card-badges{position:absolute;left:13px;top:55px;z-index:5;display:flex;flex-direction:column;gap:5px}.badge{background:#111;color:#fff;padding:6px 8px;font-size:7px;font-weight:800;letter-spacing:1px}.badge.gold{background:var(--lux);color:#111}
+.quick-actions{position:absolute;right:12px;top:58px;z-index:5;display:flex;flex-direction:column;gap:6px;opacity:0;transform:translateX(8px);transition:.3s}.product-card:hover .quick-actions{opacity:1;transform:none}
+.mini-action{width:34px;height:34px;border:0;border-radius:50%;background:#fff;box-shadow:0 5px 15px #0002;font-size:12px}
+.rating{grid-column:1/-1;font-size:9px;letter-spacing:1px;color:#a47735}
+.product-meta{grid-column:1/-1;display:flex;justify-content:space-between;color:#999;font-size:8px}
+.compare-bar{position:fixed;left:50%;bottom:20px;transform:translate(-50%,150px);z-index:1900;background:#111;color:#fff;padding:12px 15px;display:flex;align-items:center;gap:15px;border-radius:999px;box-shadow:0 15px 40px #0004;transition:.35s;font-size:10px}.compare-bar.show{transform:translate(-50%,0)}
+.compare-bar button{border:0;background:var(--lux);padding:9px 12px;font-size:9px;font-weight:900}
+.toast.success{background:var(--success)}
+.cart-item .qty{display:flex;align-items:center;gap:6px;margin-top:7px}.qty button{width:24px;height:24px;border:1px solid var(--line);background:#fff}.qty span{font-size:10px;min-width:14px;text-align:center}
+.cart-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}.outline-btn{background:#fff;border:1px solid #111;padding:12px;font-size:9px;font-weight:900;letter-spacing:1px}
+.checkout-steps{display:flex;gap:6px;margin-bottom:25px}.step{flex:1;padding:9px;text-align:center;background:#e9e4da;color:#777;font-size:8px;font-weight:800}.step.active{background:#111;color:#fff}
+.order-success{text-align:center;padding:35px}.success-icon{width:70px;height:70px;border-radius:50%;display:grid;place-items:center;background:#dff3e9;color:var(--success);font-size:30px;margin:0 auto 15px}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.faq{background:#fff;border:1px solid var(--line)}.faq summary{cursor:pointer;padding:18px;font-size:11px;font-weight:800;list-style:none}.faq summary::-webkit-details-marker{display:none}.faq p{padding:0 18px 18px;color:#777;font-size:11px;line-height:1.8}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.review{background:#fff;padding:25px;border:1px solid var(--line)}.review-stars{letter-spacing:3px;color:#b98d4e}.review p{font:17px/1.5 "Playfair Display",serif;margin:12px 0}.review small{color:#888}
+@media(max-width:700px){.hero-stats{gap:15px}.hero-stat b{font-size:16px}.faq-grid,.reviews{grid-template-columns:1fr}.compare-bar{width:calc(100% - 30px);justify-content:space-between}}
+
+</style>
+</head>
+<body><div class="loading-bar" id="loadingBar"></div>
+<div class="topbar">FREE SHIPPING ON ORDERS OVER RS. 8,000 • NEW DROP JUST LANDED</div>
+<header><nav class="nav">
+<a href="#home" class="logo">DEEP FASHION STORE<span>EST. 2026</span></a>
+<div class="nav-links"><a href="#home">Home</a><a href="#shop">Shop</a><a href="#collections">Collections</a><a href="#story">Our Story</a><a href="#contact">Contact</a></div>
+<div class="nav-actions"><button class="icon-btn search-btn" id="searchBtn">⌕</button><button class="icon-btn" onclick="showToast('Account area — demo')">♙</button><button class="icon-btn cart-btn" onclick="toggleCart()">Bag <span class="cart-count" id="cartCount">0</span></button></div>
+</nav></header>
+
+<main>
+<section class="hero" id="home"><div class="hero-copy"><div class="kicker">THE NEW DEEP EDIT / 01</div><h1>Wear your <em>story.</em></h1><p>Curated pieces, timeless silhouettes and statement essentials — selected for a wardrobe that feels completely yours.</p>
+<div class="promo-countdown" id="promoCountdown">
+  <div class="time-box"><b id="cdDays">03</b><small>DAYS</small></div>
+  <div class="time-box"><b id="cdHours">00</b><small>HOURS</small></div>
+  <div class="time-box"><b id="cdMins">00</b><small>MIN</small></div>
+  <div class="time-box"><b id="cdSecs">00</b><small>SEC</small></div>
+</div>
+<div class="hero-stats"><div class="hero-stat"><b>50%</b><span>AZAADI OFFER</span></div><div class="hero-stat"><b>100%</b><span>CURATED</span></div><div class="hero-stat"><b>24/7</b><span>ONLINE SHOP</span></div></div><a class="cta" href="#shop">Explore the collection →</a></div><div class="hero-visual"><img class="hero-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRADSUXyeTbkntGG-m_lGjZ6prETmrFAuoVzmfaofpetQ&amp;s=10" alt="Featured fashion"><div class="hero-badge">CURATED / NOT ORDINARY</div></div></section>
+<div class="ticker"><div class="ticker-track"><span>DEEP FASHION STORE</span> ✦ <span>CURATED THRIFT</span> ✦ <span>MODERN CLASSICS</span> ✦ <span>LIMITED DROPS</span> ✦ <span>DEEP FASHION STORE</span> ✦ <span>CURATED THRIFT</span> ✦</div></div>
+
+<section class="section" id="shop"><div class="section-head"><div><div class="kicker">SHOP THE EDIT</div><h2>Fresh finds.</h2></div><p>Your original images are preserved and displayed as a responsive product gallery. Click any card for a larger view.</p></div>
+<div class="filters"><button class="filter active" data-filter="all">All Pieces</button><button class="filter" data-filter="new">New Drop</button><button class="filter" data-filter="vintage">Vintage Edit</button><button class="filter" data-filter="essential">Essentials</button></div>
+
+<div class="shop-toolbar">
+  <form class="pretty-search" id="storeSearch">
+    <input id="storeSearchInput" type="search" placeholder="Search shirts, vintage, essentials...">
+    <button type="submit">⌕</button>
+  </form>
+  <select class="sort-box" id="sortProducts" aria-label="Sort products">
+    <option value="default">Sort: Featured</option>
+    <option value="low">Price: Low to High</option>
+    <option value="high">Price: High to Low</option>
+    <option value="az">Name: A to Z</option>
+    <option value="za">Name: Z to A</option>
+  </select>
+</div>
+<div class="product-grid" id="productGrid">
+      <article class="product-card" data-name="Premium Vintage #1">
+        <div class="card-media">
+          <span class="product-number">#01</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRADSUXyeTbkntGG-m_lGjZ6prETmrFAuoVzmfaofpetQ&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Premium Vintage</h3></div>
+          <strong>Rs. 2,674</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <div class="rating">★★★★★ <span style="color:#888">4.9</span></div>
+    <div class="product-meta"><span>PRE-OWNED / CURATED</span><span>READY TO SHIP</span></div>
+    <div class="card-badges"><span class="badge gold">50% OFF</span><span class="badge">LIMITED</span></div>
+    <div class="quick-actions">
+      <button class="mini-action" title="Compare" onclick="toggleCompare(event,this)">⇄</button>
+      <button class="mini-action" title="Share" onclick="shareProduct(event,this)">↗</button>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Urban Classic #2">
+        <div class="card-media">
+          <span class="product-number">#02</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi3PvsSPXh8-1ekJY0g2e3gYsMxU4bXGMKylOUlpgM9g&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Urban Classic</h3></div>
+          <strong>Rs. 2,849</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Street Essential #3">
+        <div class="card-media">
+          <span class="product-number">#03</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ4PyM0A4rSCbpbtph9vc9INbGQipptqp25Oh-XhUj4w&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Street Essential</h3></div>
+          <strong>Rs. 3,024</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Modern Heritage #4">
+        <div class="card-media">
+          <span class="product-number">#04</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3rtLTi5MsMTT-nRkr0RCjIM2VzIcrJ6t6Gt1rOsauKQ&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Modern Heritage</h3></div>
+          <strong>Rs. 3,199</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Everyday Luxe #5">
+        <div class="card-media">
+          <span class="product-number">#05</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwX7Lvkd14u5ykapXFwNiBRUBheIgpxUXhTPLUlYDDcQ&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Everyday Luxe</h3></div>
+          <strong>Rs. 3,374</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Retro Edit #6">
+        <div class="card-media">
+          <span class="product-number">#06</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbrh5OmmI_nuBN-Q6DTm0iPqQppW2JkiL7Z-ociqMOow&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Retro Edit</h3></div>
+          <strong>Rs. 3,549</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Classic Tailored #7">
+        <div class="card-media">
+          <span class="product-number">#07</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTaTm_awF6CQHmipHXRTNhjs6JTSNx2LxjQUlFv8-m6g&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Classic Tailored</h3></div>
+          <strong>Rs. 3,724</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Minimal Collection #8">
+        <div class="card-media">
+          <span class="product-number">#08</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9FRYRLeSxpPWu_Yji2gNxpL-1kThJQnNTyhRWN8MTrw&s" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Minimal Collection</h3></div>
+          <strong>Rs. 3,899</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Premium Vintage #9">
+        <div class="card-media">
+          <span class="product-number">#09</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2S-1vwYfUzBqw03a9BpUWG5fP5-F7rhjtCvYCFhIoaA&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Premium Vintage</h3></div>
+          <strong>Rs. 4,074</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Urban Classic #10">
+        <div class="card-media">
+          <span class="product-number">#10</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe_ESMGL9gbyf0kiDtDrDNk_yO94EQlxo7uvW0Pd6aKQ&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Urban Classic</h3></div>
+          <strong>Rs. 4,249</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Street Essential #11">
+        <div class="card-media">
+          <span class="product-number">#11</span>
+          <img src="https://static-01.daraz.pk/p/e47b92112e38aad945dd8b41a24b4711.jpg" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Street Essential</h3></div>
+          <strong>Rs. 4,424</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Modern Heritage #12">
+        <div class="card-media">
+          <span class="product-number">#12</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC4oPDqnib_qKMe9Cc37qr5M4YHYzWw_Ly7jpKK1yCfw&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Modern Heritage</h3></div>
+          <strong>Rs. 4,599</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Everyday Luxe #13">
+        <div class="card-media">
+          <span class="product-number">#13</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9ASmf2TZIqK-a2fbH6VCLk7JcbeNvU2SbD1S2pBaNEg&s" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Everyday Luxe</h3></div>
+          <strong>Rs. 4,774</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Retro Edit #14">
+        <div class="card-media">
+          <span class="product-number">#14</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI6--tvJWq22-n8rFrPxk5VFHYY3U0fO0-4V0tJyUyGQ&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Retro Edit</h3></div>
+          <strong>Rs. 4,949</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Classic Tailored #15">
+        <div class="card-media">
+          <span class="product-number">#15</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvoDafGR0xYhEgHMhE9Y9g1LhlYvGUcA_M_rrEZk1qvN1MeLD0rvSdR9KL&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Classic Tailored</h3></div>
+          <strong>Rs. 5,124</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Minimal Collection #16">
+        <div class="card-media">
+          <span class="product-number">#16</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgDpRMGli6n_npRr0vMJmnakQL-E84lYnLRimQ1cYogw&s" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Minimal Collection</h3></div>
+          <strong>Rs. 5,299</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Premium Vintage #17">
+        <div class="card-media">
+          <span class="product-number">#17</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-lzRGfuxGMpWZ00z1ezo_AZvRHnRIvXZ2QIB6Lv4VXQ&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Premium Vintage</h3></div>
+          <strong>Rs. 5,474</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Urban Classic #18">
+        <div class="card-media">
+          <span class="product-number">#18</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG29XaHQ2Iy_1I1CwJ5Y20cNwj_zSsj8aBz7xoI5_5Ig&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Urban Classic</h3></div>
+          <strong>Rs. 5,649</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Street Essential #19">
+        <div class="card-media">
+          <span class="product-number">#19</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1aYCij0KTUpdEeQeZ3-MOdug36fZkBuwF1P0FL3eL_g&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Street Essential</h3></div>
+          <strong>Rs. 5,824</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Modern Heritage #20">
+        <div class="card-media">
+          <span class="product-number">#20</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVqHJO9AJreVdGQPrfmcQd61FdmqPhWNaxXP89xszuYQ&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Modern Heritage</h3></div>
+          <strong>Rs. 5,999</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Everyday Luxe #21">
+        <div class="card-media">
+          <span class="product-number">#21</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvZaGObv4mIboXwX_U7YFRbBLwsOvjGo6BsNiTIiN9ew&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Everyday Luxe</h3></div>
+          <strong>Rs. 6,174</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Retro Edit #22">
+        <div class="card-media">
+          <span class="product-number">#22</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn_gfi5zzBgfTwnAC2DehN7YASuIrBE6t1uALYYzeKPw&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Retro Edit</h3></div>
+          <strong>Rs. 6,349</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Classic Tailored #23">
+        <div class="card-media">
+          <span class="product-number">#23</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh2aQvGJqE-cYpOBJ5_YZ2cil9Vuo2QbF7day1cVjvzw&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Classic Tailored</h3></div>
+          <strong>Rs. 6,524</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Minimal Collection #24">
+        <div class="card-media">
+          <span class="product-number">#24</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQjc8vYnhVlewy5sqL2gtI569aI0L0CsaLJAHLHobIFg&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Minimal Collection</h3></div>
+          <strong>Rs. 6,699</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Premium Vintage #25">
+        <div class="card-media">
+          <span class="product-number">#25</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8kdfMnz3SY_S67PnXpQv2JAHh-W3E1teeWVSNHsl1Ug&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Premium Vintage</h3></div>
+          <strong>Rs. 6,874</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Urban Classic #26">
+        <div class="card-media">
+          <span class="product-number">#26</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4ygnNd9p8mabXXMqW9-usA38djWn_19k_Z4jV9FSDuw&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Urban Classic</h3></div>
+          <strong>Rs. 7,049</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Street Essential #27">
+        <div class="card-media">
+          <span class="product-number">#27</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTItKKEFGb4VExpE1xYmKETbIUSxd91rn1w42OQUbk9Hw&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Street Essential</h3></div>
+          <strong>Rs. 7,224</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Modern Heritage #28">
+        <div class="card-media">
+          <span class="product-number">#28</span>
+          <img src="data:image/jpeg;base64,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" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Modern Heritage</h3></div>
+          <strong>Rs. 7,399</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Everyday Luxe #29">
+        <div class="card-media">
+          <span class="product-number">#29</span>
+          <img src="data:image/jpeg;base64,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" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Everyday Luxe</h3></div>
+          <strong>Rs. 7,574</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Retro Edit #30">
+        <div class="card-media">
+          <span class="product-number">#30</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmwMit2ioayzpz5zkMRJnZutjX0w8m3zQH88XEcr6BFg&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Retro Edit</h3></div>
+          <strong>Rs. 7,749</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Classic Tailored #31">
+        <div class="card-media">
+          <span class="product-number">#31</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFoz9IKkCfJ0hjwyNq3oNGNx6-zvcSxZJxzOv_8ERJbA&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Classic Tailored</h3></div>
+          <strong>Rs. 7,924</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Minimal Collection #32">
+        <div class="card-media">
+          <span class="product-number">#32</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuDnjScTBmQD7JuwmBRJIltqRIxG3f1iIVjsAEs7d55g&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Minimal Collection</h3></div>
+          <strong>Rs. 8,099</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Premium Vintage #33">
+        <div class="card-media">
+          <span class="product-number">#33</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkH3z9ZIDZ9PpwYjA2BXr5M-K3ofrHp3UBjBwN57mfRw&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Premium Vintage</h3></div>
+          <strong>Rs. 8,274</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Urban Classic #34">
+        <div class="card-media">
+          <span class="product-number">#34</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz0DYDlFOt5NV-rtElpZO52AyMhmJ30Vyu3e27XAaIPw&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Urban Classic</h3></div>
+          <strong>Rs. 8,449</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Street Essential #35">
+        <div class="card-media">
+          <span class="product-number">#35</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuzRgsCqUlnaTVb7APid_F2l5VpxQrG6yz73_s7nXahQ&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Street Essential</h3></div>
+          <strong>Rs. 8,624</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Modern Heritage #36">
+        <div class="card-media">
+          <span class="product-number">#36</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6PZxgRbRIfV-9nQacX9obvLPioxmfWb29G23yohqihQ&s" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Modern Heritage</h3></div>
+          <strong>Rs. 8,799</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Everyday Luxe #37">
+        <div class="card-media">
+          <span class="product-number">#37</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDtrKg9xG4stcbZzUWAtLIw2hdLz1CLSCSHPhKq_5Z2A&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Everyday Luxe</h3></div>
+          <strong>Rs. 8,974</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Retro Edit #38">
+        <div class="card-media">
+          <span class="product-number">#38</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMXC1wmCFrX5M1Ii7NewSSAXva9EbwsRTuB244CPqUw&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Retro Edit</h3></div>
+          <strong>Rs. 9,149</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Classic Tailored #39">
+        <div class="card-media">
+          <span class="product-number">#39</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWn9Qk4RsgJT0LP5Ju8jmqc9R3zDkelhP9J2mlOfUxUA&s" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Classic Tailored</h3></div>
+          <strong>Rs. 9,324</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Minimal Collection #40">
+        <div class="card-media">
+          <span class="product-number">#40</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGxGy-uRm73fmYgQpp8z71SgHmTRRddJks52A1bE4Yyg&s" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Minimal Collection</h3></div>
+          <strong>Rs. 9,499</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Premium Vintage #41">
+        <div class="card-media">
+          <span class="product-number">#41</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxSxnQx6YjAeSYWKyJLEgDW_9OMIPmkbf7u8yzVxcqGg&s" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Premium Vintage</h3></div>
+          <strong>Rs. 9,674</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Urban Classic #42">
+        <div class="card-media">
+          <span class="product-number">#42</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5sCz6zj2jW6dSx6rDNly2Z26SzdvwSWAdbjKzj4xXxQ&s" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Urban Classic</h3></div>
+          <strong>Rs. 9,849</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Street Essential #43">
+        <div class="card-media">
+          <span class="product-number">#43</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnomdxyQEwQF2UeJ74ZAGLl3LJmnwd6LkS4x_M-LnHsg&s" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Street Essential</h3></div>
+          <strong>Rs. 10,024</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Modern Heritage #44">
+        <div class="card-media">
+          <span class="product-number">#44</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2rwX6TyVH92nZXHwF8rHMm5G-GZPEaMpZd2EaiJG_Yg&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Modern Heritage</h3></div>
+          <strong>Rs. 10,199</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Everyday Luxe #45">
+        <div class="card-media">
+          <span class="product-number">#45</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUZbyvclaYAeZ-BM3EJgpFQwxeubNZ0IpYG1iHriJC4g&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Everyday Luxe</h3></div>
+          <strong>Rs. 10,374</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Retro Edit #46">
+        <div class="card-media">
+          <span class="product-number">#46</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpUvPe70CRy95YpbL_najEW1_q20lJ5MatLgnjZRSFOg&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Retro Edit</h3></div>
+          <strong>Rs. 10,549</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Classic Tailored #47">
+        <div class="card-media">
+          <span class="product-number">#47</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzSi77wB1SGd4AkivgoU9TsThLun_7f7a78prSuWEYqw&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Classic Tailored</h3></div>
+          <strong>Rs. 10,724</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Minimal Collection #48">
+        <div class="card-media">
+          <span class="product-number">#48</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMQuKj2sg5d0wyohJSf0Ff7Na0t0jVsnXonWvr7lCuDQ&s" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Minimal Collection</h3></div>
+          <strong>Rs. 10,899</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Premium Vintage #49">
+        <div class="card-media">
+          <span class="product-number">#49</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkMy-PZJTc_ojogwEF7ofiYmEvQSStbnLW6bADvaR9RQ&s" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Premium Vintage</h3></div>
+          <strong>Rs. 11,074</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article>
+
+      <article class="product-card" data-name="Urban Classic #50">
+        <div class="card-media">
+          <span class="product-number">#50</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_-BP_viq4oBPZHtiW4y3hrjorMAmPwArAPSJuPAQbRw&s=10" alt="">
+          <button class="heart" type="button">♡</button>
+          <div class="quick-view">QUICK VIEW</div>
+        </div>
+        <div class="card-info">
+          <div><p class="eyebrow">DEEP EDIT</p><h3>Urban Classic</h3></div>
+          <strong>Rs. 11,249</strong>
+          <div class="color-row">
+      <span class="color-dot black" title="Black"></span>
+      <span class="color-dot white" title="White"></span>
+      <span class="color-dot beige" title="Beige"></span>
+      <span class="color-dot green" title="Green"></span>
+    </div>
+    <span class="offer-chip">AZAADI OFFER • 50% OFF</span>
+    <button class="add-cart" type="button">ADD TO BAG <span>+</span></button>
+        </div>
+      </article></div></section>
+
+<section class="feature-strip" id="collections"><div class="feature"><b>Curated, not crowded.</b><p>Every piece is presented as part of a considered fashion edit.</p></div><div class="feature"><b>Your images stay.</b><p>The original image sources already in your HTML are kept in the product cards.</p></div><div class="feature"><b>Made to explore.</b><p>Responsive cards, quick view, wishlist, filters and a working demo bag bring the storefront to life.</p></div></section>
+
+<section class="section newsletter" id="story"><div><div class="kicker">JOIN THE DEEP LIST</div><h2>Stay in the loop.</h2></div><form class="signup" id="signup"><input type="email" placeholder="Your email address" required><button>JOIN →</button></form></section>
+</main>
+
+
+<section class="verify-banner">
+  <div class="verify-inner">
+    <div>
+      <h3>Verify your account before you shop.</h3>
+      <p>Create a verified DEEP account to save your bag, receive order updates and continue to checkout.</p>
+    </div>
+    <button class="gold-btn" onclick="openAuth()">Create / Verify Account</button>
+  </div>
+</section>
+
+<section class="location-card" id="location">
+  <div class="location-inner">
+    <div class="location-copy">
+      <div class="kicker">OUR LOCATION</div>
+      <h2>DEEP, Karachi.</h2>
+      <p><b>Store:</b> DEEP FASHION STORE</p>
+      <p><b>Location:</b> Karachi, Sindh, Pakistan</p>
+      <p><b>Hours:</b> Mon–Sat · 11:00 AM – 9:00 PM</p>
+      <p><b>Support:</b> +92 300 0000000 · hello@deepfashion.store</p>
+      <button class="gold-btn" onclick="showToast('Location saved for demo')">Save Location</button>
+    </div>
+    <div class="map-demo"><div class="pin"><span>⌖</span></div></div>
+  </div>
+</section>
+
+<section class="channels" id="channels">
+  <div class="section-head"><div><div class="kicker">SHOPPING CHANNELS</div><h2>Stay connected.</h2></div><p>Use your preferred channel for new drops, order support and online shopping updates.</p></div>
+  <div class="channel-grid">
+    <div class="channel"><b>WhatsApp</b><p>Fast order help, product questions and checkout assistance.</p><a href="#" onclick="showToast('WhatsApp channel demo');return false">OPEN CHANNEL →</a></div>
+    <div class="channel"><b>Instagram</b><p>New arrivals, outfit edits and limited DEEP drops.</p><a href="#" onclick="showToast('Instagram channel demo');return false">FOLLOW →</a></div>
+    <div class="channel"><b>TikTok</b><p>Short fashion videos, styling ideas and behind-the-scenes content.</p><a href="#" onclick="showToast('TikTok channel demo');return false">WATCH →</a></div>
+    <div class="channel"><b>Online Store</b><p>Browse the complete collection and build your shopping bag.</p><a href="#shop">SHOP NOW →</a></div>
+  </div>
+</section>
+
+
+<section class="section" id="faqs">
+  <div class="section-head"><div><div class="kicker">NEED HELP?</div><h2>Quick answers.</h2></div><p>Everything a first-time online shopper needs before placing a demo order.</p></div>
+  <div class="faq-grid">
+    <details class="faq" open><summary>How do I buy a product?</summary><p>Open a product card, choose a color, add it to your bag, verify your DEEP account, then proceed to checkout.</p></details>
+    <details class="faq"><summary>What payment methods are available?</summary><p>The frontend includes EasyPaisa, JazzCash and Credit/Debit Card as demo payment choices. Real payment processing requires a secure backend and official gateway credentials.</p></details>
+    <details class="faq"><summary>Can I return an item?</summary><p>For this frontend project, Returns & Exchange is shown as a customer-care section. You can later connect it to your real store policy and backend.</p></details>
+    <details class="faq"><summary>Is account verification required?</summary><p>Yes. The demo checkout asks the visitor to verify their DEEP account before placing an order.</p></details>
+  </div>
+</section>
+<section class="section" id="reviews">
+  <div class="section-head"><div><div class="kicker">THE DEEP COMMUNITY</div><h2>Loved the edit.</h2></div></div>
+  <div class="reviews">
+    <article class="review"><div class="review-stars">★★★★★</div><p>“The cards feel like a real fashion store.”</p><small>— Ayesha · Verified shopper</small></article>
+    <article class="review"><div class="review-stars">★★★★★</div><p>“Clean, premium and easy to browse.”</p><small>— Hamza · Verified shopper</small></article>
+    <article class="review"><div class="review-stars">★★★★★</div><p>“The product details and bag flow are beautiful.”</p><small>— Sara · Verified shopper</small></article>
+  </div>
+</section>
+
+<footer id="contact"><div class="footer-grid"><div><div class="footer-logo">DEEP</div><p>DEEP FASHION STORE<br>Modern thrift. Timeless style.</p></div><div><h4>Explore</h4><p><a href="#home">Home</a></p><p><a href="#shop">Shop</a></p><p><a href="#collections">Collections</a></p></div><div><h4>Help</h4><p>Shipping & Returns</p><p>Size Guide</p><p><a href="#faqs">FAQs</a></p><p><a href="#reviews">Reviews</a></p></div><div><h4>Contact</h4><p>Karachi, Pakistan</p><p>hello@deepfashion.store</p><p>Instagram / TikTok</p></div></div>
+<div class="footer-extra">
+  <div><h4>DEEP FASHION STORE</h4><p>Premium thrift fashion, curated essentials and modern classics. Karachi-based online fashion store.</p></div>
+  <div><h4>Customer Care</h4><p>Account Verification<br>Order Tracking<br>Returns & Exchange<br>Size Guide<br>Payment Help</p></div>
+  <div><h4>Payments</h4><p>EasyPaisa • JazzCash<br>Credit / Debit Card<br>Cash on Delivery<br>Secure Demo Checkout</p></div>
+</div>
+<div class="copyright"><span>© 2026 DEEP FASHION STORE</span><span>Designed for the DEEP EDIT</span></div></footer>
+
+<div class="modal" id="productModal"><div class="modal-box"><button class="close" onclick="closeModal()">×</button><div class="modal-image"><img id="modalImg" src="" alt=""></div><div class="modal-info"><div class="eyebrow">DEEP EDIT / PRODUCT DETAIL</div><h2 id="modalTitle">Product</h2><p>Selected from your original image collection. <b style="color:#9b6d27">AZAADI OFFER: 50% OFF</b><br>Choose your color, then add the piece to your demo shopping bag.</p><div class="modal-price" id="modalPrice">Rs. 0</div><button class="cta" id="modalAdd">ADD TO BAG +</button></div></div></div>
+<aside class="cart-panel" id="cartPanel"><div class="cart-head"><h3>YOUR BAG</h3><button class="icon-btn" onclick="toggleCart()">×</button></div><div class="cart-items" id="cartItems"><p style="color:#777;font-size:13px">Your bag is empty.</p></div><div class="cart-total"><span>TOTAL</span><span id="cartTotal">Rs. 0</span></div></aside>
+<div class="auth-modal" id="authModal">
+  <div class="auth-box">
+    <button class="close-x" onclick="closeAuth()">×</button>
+    <div class="auth-top"><h2>DEEP Account</h2><p>Verify your account to unlock checkout and order tracking.</p></div>
+    <div class="auth-body">
+      <div class="field"><label>FULL NAME</label><input id="authName" placeholder="Your full name"></div>
+      <div class="field"><label>EMAIL</label><input id="authEmail" type="email" placeholder="you@example.com"></div>
+      <div class="field"><label>PHONE</label><input id="authPhone" placeholder="+92 3XX XXXXXXX"></div>
+      <div class="field"><label>VERIFICATION CODE</label><div style="display:flex;gap:8px"><input id="authCode" placeholder="Enter code"><button class="gold-btn" onclick="sendDemoCode()">SEND CODE</button></div></div>
+      <div class="auth-actions"><button class="gold-btn" onclick="verifyAccount()">VERIFY ACCOUNT</button><span id="verifyStatus" style="font-size:11px;color:#777"></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="checkout-modal" id="checkoutModal">
+  <div class="checkout-box">
+    <button class="close-x" onclick="closeCheckout()">×</button>
+    <h2>Secure Demo Checkout</h2>
+    <div class="field"><label>DELIVERY ADDRESS</label><input id="checkoutAddress" placeholder="House / Street / Area / Karachi"></div>
+    <div class="field"><label>PAYMENT METHOD</label>
+      <div class="payment-grid">
+        <button class="pay-option active" data-pay="EasyPaisa">EasyPaisa</button>
+        <button class="pay-option" data-pay="JazzCash">JazzCash</button>
+        <button class="pay-option" data-pay="Card">Credit / Debit Card</button>
+      </div>
+    </div>
+    <div class="checkout-total"><span>ORDER TOTAL</span><span id="checkoutTotal">Rs. 0</span></div>
+    <button class="gold-btn" style="width:100%" onclick="placeDemoOrder()">PLACE DEMO ORDER</button>
+    <p style="font-size:10px;color:#888;margin-top:12px">Demo only: no real payment is processed.</p>
+  </div>
+</div>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="compare-bar" id="compareBar"><span id="compareText">0 products selected</span><button onclick="compareProducts()">COMPARE</button><button style="background:#333;color:#fff" onclick="clearCompare()">CLEAR</button></div>
+<div class="toast" id="toast">Added to bag</div>
+<script>
+const cards=[...document.querySelectorAll(".product-card")],cart=[];
+const modal=document.getElementById("productModal");
+function priceFor(c){return Number(c.querySelector(".card-info strong").textContent.replace(/[^0-9]/g,""))||0}
+function showToast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2200)}
+function openModal(c){const i=c.querySelector(".card-media img");modalImg.src=i.src;modalImg.alt=c.dataset.name;modalTitle.textContent=c.dataset.name;modalPrice.textContent="Rs. "+priceFor(c).toLocaleString();modalAdd.onclick=()=>addToCart(c);modal.classList.add("open");document.body.style.overflow="hidden"}
+function closeModal(){modal.classList.remove("open");document.body.style.overflow=""}
+modal.addEventListener("click",e=>{if(e.target===modal)closeModal()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+
+function addToCart(c){
+  const i=c.querySelector(".card-media img"),name=c.dataset.name,price=priceFor(c);
+  const found=cart.find(x=>x.name===name);
+  if(found)found.qty=(found.qty||1)+1; else cart.push({name,price,src:i.src,qty:1});
+  updateCart();showToast(name+" added to bag");
+}
+function updateCart(){
+  cartCount.textContent=cart.reduce((a,x)=>a+(x.qty||1),0);
+  cartItems.innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><img src="${x.src}"><div><h4>${x.name}</h4><small>Rs. ${x.price.toLocaleString()}</small><div class="qty"><button onclick="changeQty(${i},-1)">−</button><span>${x.qty||1}</span><button onclick="changeQty(${i},1)">+</button></div></div><button class="remove" onclick="removeItem(${i})">×</button></div>`).join(""):'<p style="color:#777;font-size:13px">Your bag is empty.</p>';
+  cartTotal.textContent="Rs. "+cart.reduce((a,x)=>a+x.price*(x.qty||1),0).toLocaleString();
+}
+function changeQty(i,d){cart[i].qty=(cart[i].qty||1)+d;if(cart[i].qty<=0)cart.splice(i,1);updateCart()}
+function removeItem(i){cart.splice(i,1);updateCart()}
+function toggleCart(){cartPanel.classList.toggle("open")}
+cards.forEach(c=>{c.querySelector(".quick-view").onclick=e=>{e.stopPropagation();openModal(c)};c.querySelector(".card-media").onclick=()=>openModal(c);c.querySelector(".add-cart").onclick=e=>{e.stopPropagation();addToCart(c)};c.querySelector(".heart").onclick=e=>{e.stopPropagation();e.currentTarget.classList.toggle("liked");e.currentTarget.textContent=e.currentTarget.classList.contains("liked")?"♥":"♡";showToast(e.currentTarget.classList.contains("liked")?"Added to wishlist":"Removed from wishlist")}});
+document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");let f=b.dataset.filter;cards.forEach((c,i)=>c.style.display=f==="all"||f==="new"&&i%3===0||f==="vintage"&&i%3===1||f==="essential"&&i%3===2?"block":"none")});
+signup.onsubmit=e=>{e.preventDefault();showToast("Welcome to the DEEP list ✦");e.target.reset()};
+searchBtn.onclick=()=>{let q=prompt("Search the DEEP collection:");if(q)showToast("Searching for “"+q+"”")}
+
+let accountVerified=false, demoCode=""; 
+function openAuth(){document.getElementById("authModal").classList.add("open")}
+function closeAuth(){document.getElementById("authModal").classList.remove("open")}
+function sendDemoCode(){demoCode=String(Math.floor(100000+Math.random()*900000));document.getElementById("verifyStatus").textContent="Demo code: "+demoCode;showToast("Verification code generated")}
+function verifyAccount(){
+  const name=document.getElementById("authName").value.trim(),email=document.getElementById("authEmail").value.trim(),code=document.getElementById("authCode").value.trim();
+  if(!name||!email||code!==demoCode){showToast("Please enter details and the correct demo code");return}
+  accountVerified=true;localStorage.setItem("deepVerified","1");document.getElementById("verifyStatus").textContent="✓ Account verified";showToast("DEEP account verified");setTimeout(closeAuth,900)
+}
+if(localStorage.getItem("deepVerified")==="1")accountVerified=true;
+
+document.getElementById("storeSearch").addEventListener("submit",e=>{e.preventDefault();filterProducts()});
+document.getElementById("storeSearchInput").addEventListener("input",filterProducts);
+function filterProducts(){
+  const q=document.getElementById("storeSearchInput").value.toLowerCase().trim();
+  cards.forEach(c=>c.style.display=(!q||c.dataset.name.toLowerCase().includes(q))?"block":"none");
+}
+document.getElementById("sortProducts").addEventListener("change",()=>{
+  const grid=document.getElementById("productGrid"), arr=[...cards],v=document.getElementById("sortProducts").value;
+  arr.sort((a,b)=>{
+    if(v==="low")return priceFor(a)-priceFor(b);
+    if(v==="high")return priceFor(b)-priceFor(a);
+    if(v==="az")return a.dataset.name.localeCompare(b.dataset.name);
+    if(v==="za")return b.dataset.name.localeCompare(a.dataset.name);
+    return Number(a.querySelector(".product-number").textContent.replace("#",""))-Number(b.querySelector(".product-number").textContent.replace("#",""));
+  });arr.forEach(c=>grid.appendChild(c));
+});
+document.querySelectorAll(".color-dot").forEach(dot=>dot.addEventListener("click",e=>{e.stopPropagation();const card=e.target.closest(".product-card");showToast(card.dataset.name+" • "+e.target.title+" selected")}));
+document.querySelectorAll(".pay-option").forEach(x=>x.addEventListener("click",()=>{document.querySelectorAll(".pay-option").forEach(y=>y.classList.remove("active"));x.classList.add("active")}));
+const oldAddToCart=addToCart;
+function startCheckout(){
+  if(!cart.length){showToast("Your bag is empty");return}
+  if(!accountVerified){openAuth();showToast("Please verify your account first");return}
+  document.getElementById("checkoutTotal").textContent="Rs. "+cart.reduce((a,x)=>a+x.price*(x.qty||1),0).toLocaleString();
+  document.getElementById("checkoutModal").classList.add("open");
+}
+function closeCheckout(){document.getElementById("checkoutModal").classList.remove("open")}
+function placeDemoOrder(){if(!document.getElementById("checkoutAddress").value.trim()){showToast("Enter your delivery address");return}closeCheckout();cart.length=0;updateCart();showToast("Demo order placed successfully ✓")}
+document.querySelector(".cart-total").insertAdjacentHTML("afterend",'<button class="gold-btn" style="width:100%;margin-top:15px" onclick="startCheckout()">PROCEED TO CHECKOUT</button>');
+
+
+/* ===== FINAL JS SYSTEM ===== */
+const compareSet=[];
+function toggleCompare(e,btn){
+  e.stopPropagation();
+  const card=btn.closest(".product-card"),idx=compareSet.indexOf(card);
+  if(idx>=0)compareSet.splice(idx,1);else if(compareSet.length<3)compareSet.push(card);else{showToast("Compare up to 3 products");return}
+  document.getElementById("compareText").textContent=compareSet.length+" product"+(compareSet.length===1?"":"s")+" selected";
+  document.getElementById("compareBar").classList.toggle("show",compareSet.length>0);
+}
+function clearCompare(){compareSet.length=0;document.getElementById("compareBar").classList.remove("show")}
+function compareProducts(){
+  if(!compareSet.length)return;
+  const names=compareSet.map(x=>x.dataset.name).join(" • ");
+  showToast("Comparing: "+names);
+}
+async function shareProduct(e,btn){
+  e.stopPropagation();const card=btn.closest(".product-card"),name=card.dataset.name;
+  try{await navigator.clipboard.writeText(name+" — DEEP FASHION STORE");showToast("Product name copied")}catch(_){showToast("Share: "+name)}
+}
+(function(){
+  const target=Date.now()+3*24*60*60*1000;
+  function tick(){
+    let s=Math.max(0,target-Date.now())/1000;
+    const d=Math.floor(s/86400);s%=86400;const h=Math.floor(s/3600);s%=3600;const m=Math.floor(s/60);const sec=Math.floor(s%60);
+    ["cdDays","cdHours","cdMins","cdSecs"].forEach((id,n)=>document.getElementById(id).textContent=String([d,h,m,sec][n]).padStart(2,"0"));
+  }tick();setInterval(tick,1000);
+})();
+window.addEventListener("scroll",()=>{
+  const top=document.getElementById("scrollTop");top.classList.toggle("show",window.scrollY>500);
+  const max=document.documentElement.scrollHeight-innerHeight, pct=max>0?(scrollY/max)*100:0;document.getElementById("loadingBar").style.width=pct+"%";
+});
+window.addEventListener("load",()=>document.getElementById("loadingBar").style.width="100%");
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener("click",()=>{document.getElementById("cartPanel")?.classList.remove("open")}));
+
+</script>
+</body></html>
